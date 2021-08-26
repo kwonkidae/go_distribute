@@ -21,6 +21,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/peer"
 	"google.golang.org/grpc/status"
+	"fmt"
 )
 
 type Config struct {
@@ -150,6 +151,7 @@ func (s *grpcServer) ConsumeStream(
 		case <-stream.Context().Done():
 			return nil
 		default:
+			fmt.Println("ConsumeStream")
 			res, err := s.Consume(stream.Context(), req)
 			switch err.(type) {
 			case nil:
